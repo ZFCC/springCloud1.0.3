@@ -53,7 +53,7 @@ public class applicationConsumerController {
         if (id.equals("A")) {
             System.out.println(id);
             RestTemplate rt = new RestTemplate();
-//            RestTemplate rt = getRestTemplate();
+
             string= rt.getForObject("http://localhost:8080/search/A", String.class);
             return string;
 //        return rt.getForObject("http://EUREKA-PROVIDER/search/A", String.class);
@@ -61,7 +61,7 @@ public class applicationConsumerController {
         if (id.equals("B")) {
             System.out.println(id);
             RestTemplate rt = new RestTemplate();
-//            RestTemplate rt = getRestTemplate();
+
             string= rt.getForObject("http://localhost:8081/search/B", String.class);
             return string;
         }
