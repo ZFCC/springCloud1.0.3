@@ -18,7 +18,8 @@ public class applicationConsumerController {
 
     @Autowired
     private DiscoveryClient discoveryClient;
-
+    @Autowired
+    RestTemplate restTemplate;
     //添加负载均衡配置
     @Bean
     @LoadBalanced
@@ -68,5 +69,13 @@ public class applicationConsumerController {
         //            RestTemplate rt = getRestTemplate();
 //            return rt1.getForObject("http://localhost:8081/search/A", String.class);
         return string;
+    }
+
+
+    @GetMapping("/add")
+    public String add(Integer a, Integer b){
+        String result = restTemplate.getForObject("http://eureka-provider/add?a="+a+"&b="+b, String.class);
+        System.out.println(result);
+        return result;
     }
 }
