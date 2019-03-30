@@ -9,3 +9,18 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8810/eureka/,http://localhost:8811/eureka/
+
+eureka-provider:
+    ribbon:
+        NFLoadBalancerRuleClassName: com.sn.springCloud103.MyRule #选择的负载均衡策略
+        ConnectTimeout: 1000 #请求连接的超时时间
+        ReadTimeout: 3000 #请求处理的超时时间
+        OkToRetryOnAllOperations: true #对所有操作请求都进行重试
+        MaxAutoRetriesNextServer: 2 #切换实例的重试次数
+        MaxAutoRetries: 1 #对当前实例的重试次数
+
+
+ribbon:
+    eager-load:
+        enabled: true #开启Ribbon的饥饿加载模式
+        clients: eureka-provider, eureka-consumer #指定需要饥饿加载的客户端名称、服务名
