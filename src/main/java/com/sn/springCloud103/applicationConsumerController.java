@@ -71,11 +71,13 @@ public class applicationConsumerController {
         return string;
     }
 
-
+//http://localhost:8887/add?a=1&b=2
     @GetMapping("/add")
     public String add(Integer a, Integer b){
+        Long strTime = System.currentTimeMillis();
         String result = restTemplate.getForObject("http://eureka-provider/add?a="+a+"&b="+b, String.class);
-        System.out.println(result);
+        Long endTime = System.currentTimeMillis();
+        System.out.println(result+","+String.valueOf(endTime-strTime));
         return result;
     }
 }
